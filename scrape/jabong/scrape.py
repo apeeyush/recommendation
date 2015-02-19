@@ -17,7 +17,8 @@ def parsePage(page_url):
         tree = html.fromstring(page.text)
         brand = tree.xpath('//*[@id="qa-prd-brand"]/text()')
         with open(out_file,'a') as f: f.write(page_url + ';')
-        with open(out_file,'a') as f: f.write(brand[0].strip().encode('ascii', 'ignore') + ';')
+        if brand:
+            with open(out_file,'a') as f: f.write(brand[0].strip().encode('ascii', 'ignore') + ';')
         # Product Description
         product_description = tree.xpath('//*[@id="productInfo"]/p/text()')
         if product_description:
@@ -44,7 +45,7 @@ def main():
     for child in root:
         for child_element in child:
             if child_element.tag.find('loc') >=0:
-                page_url = child_element.text            
+                page_url = child_element.text
                 parsePage(page_url)
 
 if __name__ == '__main__':
