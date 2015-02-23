@@ -5,8 +5,8 @@ import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import tostring
 import time
 
-in_file = '21/21.xml'
-out_file = '21/21data'
+in_file = '13/13.xml'
+out_file = '13/13data'
 
 def parsePage(page_url):
     page = requests.get(page_url)
